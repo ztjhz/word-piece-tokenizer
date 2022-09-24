@@ -48,7 +48,11 @@ class BasicTokenizer:
         while i < len(chars):
             char = chars[i]
             if _is_punctuation(char):
-                output.append([char])
+                if char == '[' and i + 5 < len(chars) and "".join(chars[i:i+6]).upper() == "[MASK]":
+                    output.append([x.upper() for x in chars[i:i+6]])
+                    i += 5
+                else:
+                    output.append([char])
                 start_new_word = True
             else:
                 if start_new_word:
