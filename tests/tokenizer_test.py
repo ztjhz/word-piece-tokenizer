@@ -89,6 +89,11 @@ class TestTokenizer(unittest.TestCase):
             for s in sentences:
                 lib_res, my_res = self.tokenize_with_both_tokenizer(s)
                 self.assertEqual(lib_res, my_res)
+    
+    def test_hashtags(self):
+        s = "you are #good! ## bye bye"
+        lib_res, my_res = self.tokenize_with_both_tokenizer(s)
+        self.assertEqual(lib_res, my_res)
 
 
 if __name__ == '__main__':

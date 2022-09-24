@@ -24,7 +24,7 @@ class Trie:
 
         while curr_index < len(text) and text[curr_index] in ref:
             ref = ref[text[curr_index]]
-            if ("" in ref and text[curr_index] != "#"):
+            if ("" in ref and (len(text) == 1 or text[curr_index] != "#")):
                 longest_match_end_index = curr_index
                 longest_match_token = ref[""]
             curr_index += 1
