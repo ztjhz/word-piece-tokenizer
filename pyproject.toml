@@ -1,0 +1,26 @@
+[build-system]
+requires      = ["setuptools>=61.0.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "word-piece-tokenizer"
+version = "1.0.0"
+description = "A Lightweight Word Piece Tokenizer"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { file = "LICENSE.txt" }
+keywords = ["word", "piece", "tokenizer", "transformer", "bert", "uncased"]
+authors = [{ name = "Jing Hua", email = "mail@dev.tjh.sg"}]
+classifiers = [
+    "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
+    "Programming Language :: Python",
+    "Programming Language :: Python :: 3",
+]
+dependencies = []
+
+[project.optional-dependencies]
+test = ["transformers"]
+
+[project.urls]
+homepage = "https://github.com/ztjhz/word-piece-tokenizer"
+repository = "https://github.com/ztjhz/word-piece-tokenizer"
