@@ -1,5 +1,6 @@
 from transformers import BertTokenizer
 import unittest
+import timeit
 
 import os
 from pathlib import Path
@@ -11,20 +12,43 @@ from src.word_piece_tokenizer.WordPieceTokenizer import WordPieceTokenizer
 
 
 class TestTokenizer(unittest.TestCase):
+    performance = []
 
-    def setUp(self):
+    def setUp(self, compare_performance=True):
         self._bert_tokenizer = BertTokenizer.from_pretrained(
             'bert-base-uncased')
         self._my_tokenizer = WordPieceTokenizer()
+        self._compare_performance = compare_performance
+    
+    def tearDown(self):
+        if self._compare_performance:
+            print(f"[Average] This tokenizer is {sum(TestTokenizer.performance) / len(TestTokenizer.performance) * 100:.2f}% faster")
 
     def tokenize_with_both_tokenizer(self, s: str):
-        batch = self._bert_tokenizer([s])
-        lib_res = batch.input_ids[0]
-        my_res = self._my_tokenizer.tokenize(s)
         print()
         print(s)
+
+        time_taken = []
+
+        if (self._compare_performance): start_time = timeit.default_timer()
+        batch = self._bert_tokenizer([s])
+        lib_res = batch.input_ids[0]
+        if (self._compare_performance): time_taken.append(timeit.default_timer() - start_time)
+        if (self._compare_performance): start_time = timeit.default_timer()
+        my_res = self._my_tokenizer.tokenize(s)
+        if (self._compare_performance): time_taken.append(timeit.default_timer() - start_time)
+
         print(lib_res)
         print(my_res)
+
+        if (self._compare_performance):
+            print("\n Performance Results:")
+            print(f"BERT tokenizer: {time_taken[0]}")
+            print(f"This tokenizer: {time_taken[1]}")
+            performance = 1 - time_taken[1] / time_taken[0]
+            print(f"This tokenizer is {100 * performance:.2f}% faster")
+            TestTokenizer.performance.append(performance)
+
         return lib_res, my_res
 
     def test_normal_sentence(self):
