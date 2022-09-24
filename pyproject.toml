@@ -8,19 +8,18 @@ version = "1.0.0"
 description = "A Lightweight Word Piece Tokenizer"
 readme = "README.md"
 requires-python = ">=3.9"
-license = { file = "LICENSE.txt" }
-keywords = ["word", "piece", "tokenizer", "transformer", "bert", "uncased"]
+keywords = ["word", "piece", "tokenizer", "transformer", "bert", "uncased", "nlp", "natural", "language", "processing"]
 authors = [{ name = "Jing Hua", email = "mail@dev.tjh.sg"}]
 classifiers = [
     "License :: CC0 1.0 Universal (CC0 1.0) Public Domain Dedication",
     "Programming Language :: Python",
     "Programming Language :: Python :: 3",
 ]
+license = { text = "CC0 1.0 Universal" }
 dependencies = []
 
 [project.optional-dependencies]
 test = ["transformers"]
 
 [project.urls]
-homepage = "https://github.com/ztjhz/word-piece-tokenizer"
-repository = "https://github.com/ztjhz/word-piece-tokenizer"
+Repository = "https://github.com/ztjhz/word-piece-tokenizer"
