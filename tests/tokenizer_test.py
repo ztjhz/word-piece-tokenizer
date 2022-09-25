@@ -117,6 +117,10 @@ class TestTokenizer(unittest.TestCase):
         lib_res, my_res = self.tokenize_with_both_tokenizer(s)
         self.assertEqual(lib_res, my_res)
 
+    def test_mask_tokens(self):
+        s = "hello [MASK]! how are you?"
+        lib_res, my_res = self.tokenize_with_both_tokenizer(s)
+        self.assertEqual(lib_res, my_res)
 
 if __name__ == '__main__':
     unittest.main()
