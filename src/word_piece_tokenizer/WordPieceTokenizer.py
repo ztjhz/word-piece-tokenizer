@@ -57,3 +57,6 @@ class WordPieceTokenizer:
     def convert_tokens_to_string(self, tokens):
         out_string = " ".join(tokens).replace(" ##", "").strip()
         return out_string
+    
+    def convert_ids_to_tokens(self, ids):
+        return [self._convert_id_to_token(tok_id) for tok_id in ids]
