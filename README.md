@@ -1,6 +1,8 @@
 # A Lightweight Word Piece Tokenizer
 
-This library is an implementation of a modified version of [Huggingface's Bert Tokenizer](https://github.com/huggingface/transformers/blob/main/src/transformers/models/bert/tokenization_bert.py) in pure python.
+[![PyPI version shields.io](https://img.shields.io/pypi/v/word-piece-tokenizer.svg)](https://pypi.org/project/word-piece-tokenizer/)
+
+This library is an implementation of a modified version of [Huggingface's Bert Tokenizer](https://huggingface.co/docs/transformers/model_doc/bert#transformers.BertTokenizer) in pure python.
 
 ## Table of Contents
 
@@ -29,7 +31,15 @@ pip install word-piece-tokenizer
 ```python
 from word_piece_tokenizer import WordPieceTokenizer
 tokenizer = WordPieceTokenizer()
-tokenizer.tokenize("Hello World!")
+
+ids = tokenizer.tokenize('reading a storybook!')
+# [101, 3752, 1037, 2466, 8654, 999, 102]
+
+tokens = tokenizer.convert_ids_to_tokens(ids)
+# ['[CLS]', 'reading', 'a', 'story', '##book', '!', '[SEP]']
+
+tokenizer.convert_tokens_to_string(tokens)
+# '[CLS] reading a storybook ! [SEP]'
 ```
 
 ### Running Tests
